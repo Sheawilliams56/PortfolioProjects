@@ -1,15 +1,16 @@
 /*
 
-Cleaning Data in SQL Quaries
+1). Cleaning Data With SQL Queries
 
 */
 
 Select *
-from PortfolioProject..nashvillehousing;
+from PortfolioProject..NashvilleHousing;
 
---------------------------------------------
 
--- Standardize Date Format
+----------------------------------------------------------------
+
+2). -- Standardize Date Format
 
 Select SaleDate, CONVERT(Date,SaleDate)
 From PortfolioProject..NashvilleHousing;
@@ -29,9 +30,9 @@ From PortfolioProject..NashvilleHousing;
 Alter Table PortfolioProject..NashvilleHousing
 Drop column saledate; 
 
--------------------------------------------------------
+----------------------------------------------------------------
 
--- Populate Property Address Data
+3).-- Populate Property Address Data
 
 Select *
 From PortfolioProject..NashvilleHousing
@@ -54,9 +55,10 @@ Where NH.PropertyAddress is null
 
 
 
----------------------------------------------
 
--- Breaking out Address into Indivual Columns (Address, City, State)
+----------------------------------------------------------------
+
+4). -- Breaking out Address into Individual Columns (Address, City, State)
 
 
 Select *
@@ -112,7 +114,7 @@ Set OwnerSplitState = PARSENAME(Replace(OwnerAddress, ',' , '.'), 3)
 
 -------------------------------------------------------------------------------------
 
--- Change 'Y' and 'N' to 'Yes' and 'No' in 'Sold at Vacant' Field
+5) -- Change 'Y' and 'N' to 'Yes' and 'No' in 'Sold at Vacant' Field
 
 Select Distinct(SoldAsVacant), COUNT(SoldAsVacant)
 From PortfolioProject..NashvilleHousing
@@ -137,7 +139,7 @@ From PortfolioProject..NashvilleHousing
 
 -------------------------------------------------------------
 
--- Remove Duplicates
+5) -- Remove Duplicates
 With RowNumCTE AS(
 Select *,
 Row_Number() Over ( 
@@ -156,11 +158,13 @@ Where Row_Num > 1
 
 ----------------------------------------------------
 
--- Delete Unused Columns
+6). -- Delete Unused Columns
 
 Select *
 From PortfolioProject..NashvilleHousing
 
 ALTER TABLE portfolioproject..NashvilleHousing
-DROP COLUMN Owneraddress, TaxDistrict, PropertyAddress
+DROP COLUMN Owneraddress, TaxDistrict, PropertyAddress, SaledDate
+
+
 
