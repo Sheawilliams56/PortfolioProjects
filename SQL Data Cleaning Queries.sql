@@ -139,7 +139,7 @@ From PortfolioProject..NashvilleHousing
 
 -------------------------------------------------------------
 
-5) -- Remove Duplicates
+6) -- Remove Duplicates
 With RowNumCTE AS(
 Select *,
 Row_Number() Over ( 
@@ -158,7 +158,7 @@ Where Row_Num > 1
 
 ----------------------------------------------------
 
-6). -- Delete Unused Columns
+7). -- Delete Unused Columns
 
 Select *
 From PortfolioProject..NashvilleHousing
